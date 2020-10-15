@@ -1,0 +1,10 @@
+{
+    "service": {
+      "service_account": "spark",
+      "service_account_secret": "spark/sa-secret",
+      "spark-history-server-url": "https://leader.mesos/service/spark-history"
+    },
+    "hdfs": {
+      "config-url": "http://api.hdfs.marathon.l4lb.thisdcos.directory/v1/endpoints"
+    }
+  }

@@ -1,0 +1,23 @@
+{
+    "id": "hdfsclient",
+    "mem": 512,
+    "user": "root",
+    "cmd": "/configure-hdfs.sh && bin/hdfs dfs -mkdir -p /history && sleep 3600",
+    "container": {
+      "type": "MESOS",
+      "docker": {
+        "image": "mesosphere/hdfs-client:2.6.4",
+        "forcePullImage": true
+      }
+    },
+    "networks": [
+      {
+        "mode": "host"
+      }
+    ],
+    "env": {
+      "JAVA_HOME": "/usr/lib/jvm/default-java",
+      "HDFS_SERVICE_NAME": "hdfs"
+    }
+  }
+  
