@@ -1,7 +1,7 @@
 {
-    "service": {
-        "hdfs-config-url": "http://api.hdfs.marathon.l4lb.thisdcos.directory/v1/endpoints",
-        "service_account": "spark",
-        "service_account_secret": "spark/sa-secret"
-    }
+  "service": {
+    "hdfs-config-url": "http://api.hdfs.marathon.l4lb.thisdcos.directory/v1/endpoints",
+    "service_account": "spark",
+    "service_account_secret": "spark/sa-secret"
+  }
 }
