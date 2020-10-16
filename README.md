@@ -198,10 +198,10 @@ Agent (v7.24.0-devel+git.14.c805c57)
 
 In order for the Datadog Agent Spark integration to be able to collect metrics in the DC/OS running in Strict security
 mode the Spark and Spark History Server packages have to be configured according to the D2IQ security recommendations
-for this mode of operation.
+for this mode of operation. Note also that Spark History Server requires HDFS to be installed as a dependency.
 
 > :warning: The following instructions are provided as a reference only. If you have already installed Spark and History
-> Server you may skip this section.
+> Server (logging to HDFS) you may skip this section and proceed to [Spark Integration](#Spark-Integration).
 
 1. Install HDFS
 
