@@ -66,8 +66,8 @@ $ tree ./opt-datadog-agent
     └── 90-mesos.sh
 ```
 
-Please make sure to replace the `private-key.pem` file with the contents of the private key generated for the service
-account.
+Please make sure to copy the private key `private-key.pem` generated for the service account, in the folder for each of
+these integrations: `mesos_master.d`, `mesos_slave.d` and `spark.d`.
 
 The following steps rely on this configuraiton being available at `/opt/datadog-agent/`:
 
@@ -93,7 +93,7 @@ entire directory in both cases.
 
 ## Deployment on Agent Nodes
 
-To deploy the Datadog Agent on the agent nodes of your DC/OS cluster please use [the following service manifest:
+To deploy the Datadog Agent on the agent nodes of your DC/OS cluster please use the following service manifest:
 [deploy/dcos-node-datadog-agent.json](deploy/dcos-node-datadog-agent.json).
 
 Please make sure to replace the `<YOUR_DD_API_KEY>` with your Datadog API key and configure the number of instances to
@@ -198,10 +198,10 @@ Agent (v7.24.0-devel+git.14.c805c57)
 
 In order for the Datadog Agent Spark integration to be able to collect metrics in the DC/OS running in Strict security
 mode the Spark and Spark History Server packages have to be configured according to the D2IQ security recommendations
-for this mode of operation.
+for this mode of operation. Note also that Spark History Server requires HDFS to be installed as a dependency.
 
-The following instructions are provided as a reference only. If you have already installed Spark and History Server you
-may skip this section.
+> :warning: The following instructions are provided as a reference only. If you have already installed Spark and History
+> Server (logging to HDFS) you may skip this section and proceed to [Spark Integration](#Spark-Integration).
 
 1. Install HDFS
 
