@@ -1,5 +1,5 @@
 {
-  "id": "/datadog-agent",
+  "id": "/datadog-agent-cluster-worker",
   "cmd": null,
   "cpus": 0.5,
   "mem": 256,
@@ -23,23 +23,8 @@
     "type": "DOCKER",
     "volumes": [
       {
-        "containerPath": "/var/run/docker.sock",
-        "hostPath": "/var/run/docker.sock",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/host/proc",
-        "hostPath": "/proc",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/host/sys/fs/cgroup",
-        "hostPath": "/sys/fs/cgroup",
-        "mode": "RO"
-      },
-      {
         "containerPath": "/conf.d",
-        "hostPath": "/opt/datadog-agent/agent-node/agent/conf.d",
+        "hostPath": "/opt/datadog-agent/agent-node/cluster-worker/conf.d",
         "mode": "RO"
       },
       {
@@ -48,22 +33,15 @@
         "mode": "RO"
       },
       {
-        "containerPath": "/etc/cont-init.d/90-mesos.sh",
-        "hostPath": "/opt/datadog-agent/agent-node/cont-init.d/90-mesos.sh",
+        "containerPath": "/etc/cont-init.d/80-rm-defaults.sh",
+        "hostPath": "/opt/datadog-agent/agent-node/cont-init.d/80-rm-defaults.sh",
         "mode": "RO"
       }
     ],
     "docker": {
       "image": "datadog/agent:7.24.1-jmx",
       "network": "BRIDGE",
-      "portMappings": [
-        {
-          "containerPort": 8125,
-          "hostPort": 8125,
-          "protocol": "udp",
-          "labels": {}
-        }
-      ],
+      "portMappings": [],
       "privileged": false,
       "parameters": [
         {
@@ -72,7 +50,19 @@
         },
         {
           "key": "env",
-          "value": "MESOS_SLAVE=true"
+          "value": "DD_USE_DOGSTATSD=false"
+        },
+        {
+          "key": "env",
+          "value": "DD_PROCESS_AGENT_ENABLED=false"
+        },
+        {
+          "key": "env",
+          "value": "DD_LOGS_ENABLED=false"
+        },
+        {
+          "key": "env",
+          "value": "DD_APM_ENABLED=false"
         }
       ],
       "forcePullImage": true
