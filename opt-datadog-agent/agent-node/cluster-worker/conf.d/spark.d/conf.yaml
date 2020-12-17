@@ -1,0 +1,20 @@
+init_config:
+
+instances:       
+  - spark_url: https://leader.mesos/service/spark-history
+    spark_cluster_mode: spark_driver_mode
+    tls_verify: false
+    tls_ignore_warning: true
+    
+    cluster_name: your-cluster-name
+    auth_token:
+      reader:
+        type: dcos_auth
+        login_url: https://leader.mesos/acs/api/v1/auth/login
+        service_account: datadog_agent
+        private_key_path: /etc/datadog-agent/service-account/private-key.pem
+        expiration: 600 # 10 min
+      writer:
+        type: header
+        name: Authorization
+        value: token=<TOKEN>
